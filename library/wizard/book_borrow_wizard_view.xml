@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_book_borrow_wizard_form" model="ir.ui.view">
+        <field name="name">book.borrow.wizard.form</field>
+        <field name="model">book.borrow.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Borrow Book">
+                <group>
+                    <field name="member_id"/>
+                </group>
+                <footer>
+                    <button string="Confirm Borrow" type="object" name="action_borrow_book" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

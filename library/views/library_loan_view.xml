@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Tree View -->
+  <record id="library_loan_tree_view" model="ir.ui.view">
+    <field name="name">library.loan.tree</field>
+    <field name="model">library.loan</field>
+    <field name="arch" type="xml">
+      <list string="Loans">
+        <field name="book_id"/>
+        <field name="partner_id"/>
+        <field name="borrow_date"/>
+        <field name="return_date"/>
+        <field name="status"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="library_loan_form_view" model="ir.ui.view">
+    <field name="name">library.loan.form</field>
+    <field name="model">library.loan</field>
+    <field name="arch" type="xml">
+      <form string="Loan">
+
+          <!-- Print Button -->
+        <header>
+  <button name="action_report_library_loan"
+          string="Print Report"
+          type="print"
+          class="btn-primary"/>
+</header>
+
+
+
+
+
+        <sheet>
+          <!-- Smart Buttons -->
+          <div class="oe_button_box" name="button_box">
+            <button type="action"
+                    name="%(base.action_partner_form)d"
+                    class="oe_stat_button"
+                    icon="fa-user">
+              <field name="partner_id" widget="statinfo" string="Member"/>
+            </button>
+            <button type="action"
+                    name="%(library.action_library_book)d"
+                    class="oe_stat_button"
+                    icon="fa-book">
+              <field name="book_id" widget="statinfo" string="Book"/>
+            </button>
+          </div>
+
+          <group>
+            <field name="book_id"/>
+            <field name="partner_id"/>
+            <field name="borrow_date"/>
+            <field name="return_date"/>
+
+
+            <field name="status" readonly="1"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action -->
+  <record id="action_library_loan" model="ir.actions.act_window">
+    <field name="name">Loans</field>
+    <field name="res_model">library.loan</field>
+    <field name="view_mode">list,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create your first loan</p>
+    </field>
+  </record>
+
+  <!-- Menu Item -->
+  <menuitem id="menu_library_loan"
+            name="Loans"
+            parent="library_menu_root"
+            action="action_library_loan"/>
+</odoo>
